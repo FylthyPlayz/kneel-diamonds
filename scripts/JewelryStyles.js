@@ -1,5 +1,6 @@
 import { getStyles, setStyle } from "./database.js"
-
+import { getOrders } from "./database.js"
+const orders = getOrders()
 const styles = getStyles()
 
 document.addEventListener(
@@ -29,3 +30,9 @@ export const JewelryStyles = () => {
     return html
 }
 
+const foundStyle = styles.find(
+    (style) => {
+        return style.id === orders.styleId
+    }
+)
+export const totalCost = foundStyle.price

@@ -1,7 +1,7 @@
 import { getSizes, setSize } from "./database.js"
-
+import { getOrders } from "./database.js"
 const sizes = getSizes()
-
+const orders = getOrders()
 
 document.addEventListener(
     "change",
@@ -27,4 +27,9 @@ export const DiamondSizes = () => {
 
     return html
 }
-
+const foundSize = sizes.find(
+    (size) => {
+        return size.id === orders.sizeId
+    }
+)
+export const totalCost = foundSize.price
