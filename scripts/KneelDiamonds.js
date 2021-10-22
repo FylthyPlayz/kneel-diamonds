@@ -8,6 +8,9 @@ import { addCustomOrder } from "./database.js"
 document.addEventListener(
     "click",
     (event) => {
+        if (event.target.id === "orderButton") {
+            addCustomOrder()
+        }
     }
 )
 
@@ -32,7 +35,7 @@ export const KneelDiamonds = () => {
 
         <article>
             <button id="orderButton">Create Custom Order</button>
-                ${addCustomOrder()}
+                
         </article>
 
         <article class="customOrders">

@@ -1,7 +1,7 @@
 import { getSizes, setSize } from "./database.js"
-
+import { getOrders } from "./database.js"
 const sizes = getSizes()
-
+const orders = getOrders()
 
 document.addEventListener(
     "change",

@@ -8,12 +8,7 @@
 const database = {
 
     orderBuilder: {
-        id: 1,
-        sizeId: 0,
-        styleId: 0,
-        metalId: 0,
-        orderId: 0,
-        timestamp: 0
+        
     },
 
     styles: [
@@ -46,18 +41,27 @@ const database = {
     ]
 }
 
-export const getStyles = () => {
-    return database.styles.map(style => ({...style}))
+export const addCustomOrder = () => {
+  const date = new Date()
+  database.orderBuilder.timestamp = date.toLocaleDateString()
+if (database.customOrders.length === 0) {
+    database.orderBuilder.id = 1
+} else {
+    const lastIndex = database.customOrders.length - 1
+    const newID = database.customOrders[lastIndex].id + 1
+    database.orderBuilder.id = newID
+    
 }
-export const getSizes = () => {
-    return database.sizes.map(size => ({...size}))
+    // Add the new order object to custom orders state
+    database.customOrders.push(database.orderBuilder)
+
+    // Reset the temporary state for user choices
+    database.orderBuilder = {}
+
+    // Broadcast a notification that permanent state has changed
+    document.dispatchEvent(new CustomEvent("stateChanged"))
 }
-export const getMetals = () => {
-    return database.metals.map(metal => ({...metal}))
-}
-export const getOrders = () => {
-    return database.customOrders.map(customOrder => ({...customOrder}))
-}
+
 export const setMetal = (id) => {
     database.orderBuilder.metalId = id
 }
@@ -71,23 +75,15 @@ export const setOrder = (id) => {
     database.orderBuilder.orderId = id
 }
 
-export const addCustomOrder = () => {
-    // Copy the current state of user choices
-    const newOrder = {...database.orderBuilder}
-
-    // Add a new primary key to the object
-    const lastIndex = database.customOrders.length - 1
-    newOrder.id = database.customOrders[lastIndex].id + 1
-
-    // Add a timestamp to the order
-    newOrder.timestamp = Date.now()
-
-    // Add the new order object to custom orders state
-    database.customOrders.push(newOrder)
-
-    // Reset the temporary state for user choices
-    database.orderBuilder = {}
-
-    // Broadcast a notification that permanent state has changed
-    document.dispatchEvent(new CustomEvent("stateChanged"))
+export const getStyles = () => {
+    return database.styles.map(style => ({ ...style }))
+}
+export const getSizes = () => {
+    return database.sizes.map(size => ({ ...size }))
+}
+export const getMetals = () => {
+    return database.metals.map(metal => ({ ...metal }))
+}
+export const getOrders = () => {
+    return database.customOrders.map(customOrder => ({ ...customOrder }))
 }

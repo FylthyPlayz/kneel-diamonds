@@ -1,5 +1,6 @@
 import { getStyles, setStyle } from "./database.js"
-
+import { getOrders } from "./database.js"
+const orders = getOrders()
 const styles = getStyles()
 
 document.addEventListener(
@@ -28,4 +29,3 @@ export const JewelryStyles = () => {
     html += "</ul>"
     return html
 }
-
