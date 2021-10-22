@@ -27,9 +27,4 @@ export const DiamondSizes = () => {
 
     return html
 }
-const foundSize = sizes.find(
-    (size) => {
-        return size.id === orders.sizeId
-    }
-)
-export const totalCost = foundSize.price
+

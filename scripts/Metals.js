@@ -1,15 +1,10 @@
 import { getMetals, setMetal } from "./database.js"
-import { getOrders } from "./database.js"
 
-const orders = getOrders()
+
+
 const metals = getMetals()
 
-const foundMetal = metals.find(
-    (metal) => {
-        return metal.id === orders.metalId
-    }
-)
-export const totalCost = foundMetal.price
+
 
 document.addEventListener(
     "change",

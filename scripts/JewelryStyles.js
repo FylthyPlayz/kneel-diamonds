@@ -29,10 +29,3 @@ export const JewelryStyles = () => {
     html += "</ul>"
     return html
 }
-
-const foundStyle = styles.find(
-    (style) => {
-        return style.id === orders.styleId
-    }
-)
-export const totalCost = foundStyle.price
